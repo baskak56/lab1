@@ -31,11 +31,11 @@ def multiplicative_persistence(data: PositiveIntegerInput) -> int:
 
 def mse(data: VectorPairInput) -> float:
     predicted, expected = data.predicted, data.expected
+    if len(predicted) != len(expected):
+        raise ValueError("vectors must have the same length")
     n = len(predicted)
     if n == 0:
         return 0.0
-    if len(expected) != n:
-        raise ValueError()
     return sum((p - e) ** 2 for p, e in zip(predicted, expected)) / n
 
 
